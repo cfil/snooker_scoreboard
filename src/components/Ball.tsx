@@ -4,6 +4,7 @@ interface BallProps {
   points: number;
   onClick: () => void;
   disabled: boolean;
+  remainingBalls: number;
 }
 
 const getColorForPoints = (points: number): string => {
@@ -27,20 +28,19 @@ const getColorForPoints = (points: number): string => {
   }
 };
 
-const Ball: React.FC<BallProps> = ({ points, onClick, disabled }) => {
+const Ball: React.FC<BallProps> = ({ points, onClick, disabled, remainingBalls }) => {
   const color = getColorForPoints(points);
 
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button onClick={onClick} disabled={disabled} className={ disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-200' }>
       <svg
-        width="100"
-        height="100"
-        viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
+        width="100%"
       >
-        {/* Circle representing the ball */}
-        <circle cx="50" cy="50" r="40" fill={color} />
+        <circle cx="50%" cy="25%" r="25%" fill={color} />
+        {points === 1 && <text x="50%" y="25%" textAnchor="middle" fill="white">{remainingBalls}</text>}
       </svg>
+      
     </button>
   );
 }

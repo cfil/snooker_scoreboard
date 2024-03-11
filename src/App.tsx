@@ -16,15 +16,13 @@ const App: React.FC = () => {
   };
 
   const handleStartGame = (): void => {
-    if (player1Name && player2Name) {
-      setGameStarted(true);
-    } else {
-      alert("Please enter names for both players.");
-    }
+    setPlayer1Name(player1Name ? player1Name : 'Player 1')
+    setPlayer2Name(player2Name ? player2Name : 'Player 2')
+    setGameStarted(true);
   };
 
   return (
-    <div className="App bg-green-800 h-dvh">
+    <div className="App tw-bg-green-800 tw-h-dvh">
       {!gameStarted ? (
         <StartForm 
         player1Name={player1Name} 
