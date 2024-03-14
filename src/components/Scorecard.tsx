@@ -66,11 +66,11 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
     <div className="App tw-bg-green-800 tw-h-dvh">
       <div className="row">
         <div className="col-12 tw-flex tw-justify-center tw-mb-6">
-          <h1>Aristides Hall Snooker Club</h1>
+          <a href={window.location.href} className="tw-font-semibold tw-mt-2 tw-text-white tw-underline">Aristides Hall Snooker Club</a>
         </div>
         {(
           <>
-            <div className="row players tw-mt-4">
+            <div className="row players tw-mt-2">
               <div className="col-5 tw-flex tw-justify-center">
                 <PlayerDisplay
                   isActive={activePlayer === 1}
@@ -79,8 +79,42 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
                   opponentScore={player2Score}
                 />
               </div>
-              <div className="col-2 tw-flex tw-justify-center">
-                <PointsPossibleDisplay remainingPoints={remainingPoints} />
+              <div className="col-2">
+                <div className="row">
+                  <div className="col-12">
+                    <PointsPossibleDisplay remainingPoints={remainingPoints} />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                    <div className="tw-align-middle">
+                      <div className="change-player-button tw-flex tw-justify-center tw-items-center">
+                        <button
+                          onClick={changeActivePlayer}
+                          type="button"
+                          className="tw-w-full tw-rounded-full tw-bg-green-600 tw-px-4 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm hover:tw-bg-indigo-500 "
+                        >
+                          End Break
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                    <div className="tw-align-middle">
+                      <div className="change-player-button tw-flex tw-justify-center tw-items-center tw-mt-6">
+                        <button
+                          onClick={changeActivePlayer}
+                          type="button"
+                          className="tw-w-full tw-rounded-full tw-bg-green-600 tw-px-4 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm"
+                        >
+                          Foul
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="col-5 tw-flex tw-justify-center">
                 <PlayerDisplay
@@ -104,32 +138,6 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
                     />
                   </div>
                 ))}
-              </div>
-            </div>
-            <div className="row tw-flex tw-justify-center tw-items-middle">
-              <div className="col-3 tw-align-middle">
-                <div className="change-player-button tw-flex tw-justify-center tw-items-center">
-                  <button
-                    onClick={changeActivePlayer}
-                    type="button"
-                    className="tw-rounded-full tw-bg-indigo-600 tw-px-4 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm hover:tw-bg-indigo-500 "
-                  >
-                    Change Active Player
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="row tw-flex tw-justify-center tw-items-middle">
-              <div className="col-3 tw-align-middle">
-                <div className="change-player-button tw-flex tw-justify-center tw-items-center  tw-mt-6">
-                  <button
-                    onClick={changeActivePlayer}
-                    type="button"
-                    className="tw-rounded-full tw-bg-indigo-600 tw-px-4 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm hover:tw-bg-indigo-500 "
-                  >
-                    Finish Game
-                  </button>
-                </div>
               </div>
             </div>
           </>
