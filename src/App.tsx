@@ -22,7 +22,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App tw-bg-green-800 tw-h-dvh">
+    <div className="App tw-bg-green-800 tw-h-dvh container-fluid">
       {!gameStarted ? (
         <StartForm 
         player1Name={player1Name} 

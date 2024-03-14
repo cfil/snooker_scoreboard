@@ -47,10 +47,10 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
     if (points === 1) {
       return false
     }
-    if (lastPot == 0 && points == 1) {
+    if (lastPot === 0 && points === 1) {
       return false
     }
-    if (lastPot == 0 && points > 1) {
+    if (lastPot === 0 && points > 1) {
       return true
     }
     return lastPot > 1

@@ -16,6 +16,7 @@ const StartForm: React.FC<StartFormProps> = ({ player1Name, player2Name, handleP
           <img
             className="tw-mx-auto tw-w-auto"
             src={logo}
+            alt="Aristides Hall"
           />
           <h2 className="tw-mt-10 tw-text-center tw-text-2xl tw-font-bold tw-leading-9 tw-tracking-tight tw-text-gray-900">
             Aristides Hall Snooker Club
