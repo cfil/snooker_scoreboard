@@ -10,11 +10,11 @@ interface PlayerDisplayProps {
 const PlayerDisplay: React.FC<PlayerDisplayProps> = ({ isActive, playerName, playerScore, opponentScore }) => {
   return (
     <div className={`player ${isActive ? "active" : ""}`}>
-      <h2 className={isActive ? "tw-text-red-500" : ""}>
+      <h2 className={isActive ? "tw-text-white tw-font-bold" : ""}>
         {isActive ? " > " : ""}{playerName}{isActive ? " < " : ""}
       </h2>
-      <p className="tw-text-9xl tw-flex tw-justify-center">{playerScore}</p>
-      <p className="tw-text-xl tw-flex tw-justify-center">
+      <p className='tw-text-[200px] tw-font-bold tw-flex tw-justify-center tw-text-white'>{playerScore}</p>
+      <p className="tw-text-[50px] tw-flex tw-justify-center tw-text-white">
         ({playerScore - opponentScore})
       </p>
     </div>
