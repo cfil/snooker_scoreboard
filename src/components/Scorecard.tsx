@@ -38,7 +38,8 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
   };
 
   const changeActivePlayer = (): void => {
-    setActivePlayer(activePlayer === 1 ? 2 : 1);
+    // setActivePlayer(activePlayer === 1 ? 2 : 1);
+    document.exitFullscreen();
   };
 
   const isButtonDisabled = (points: number): boolean => {
