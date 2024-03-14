@@ -3,8 +3,10 @@ import React from 'react';
 interface BallProps {
   points: number;
   onClick: () => void;
-  disabled: boolean;
+  finalSequence: boolean;
   remainingBalls: number;
+  remainingReds: number;
+  lastPot: number;
 }
 
 const getColorForPoints = (points: number): string => {
@@ -28,11 +30,30 @@ const getColorForPoints = (points: number): string => {
   }
 };
 
-const Ball: React.FC<BallProps> = ({ points, onClick, disabled, remainingBalls }) => {
+const isButtonEnabled = (points: number, lastPot : number, remainingReds : number, finalSequence: boolean): boolean => {  
+  if ( points === 1 && remainingReds === 0 ) {
+    return false
+  }
+  if ( lastPot > 1 && points > 1 && remainingReds > 0 ) {
+    return false
+  }
+  if ( lastPot > 1 && points <= lastPot && !finalSequence) {
+    return true
+  }
+  if ( lastPot > 1 && points <= lastPot && remainingReds === 0 ) {
+    return false
+  }
+  if ( lastPot === 0 && points > 1) {
+    return false
+  }
+  return true
+};
+
+const Ball: React.FC<BallProps> = ({ points, onClick, finalSequence, remainingBalls, remainingReds, lastPot }) => {
   const color = getColorForPoints(points);
 
   return (
-    <button onClick={onClick} disabled={disabled} className={ disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-200' }>
+    <button onClick={onClick} disabled={!isButtonEnabled(points, lastPot, remainingReds, finalSequence)} className={ isButtonEnabled(points, lastPot, remainingReds, finalSequence) ? 'hover:bg-gray-200' : 'opacity-50 cursor-not-allowed' }>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100%"

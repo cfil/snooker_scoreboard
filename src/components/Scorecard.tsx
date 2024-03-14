@@ -16,6 +16,8 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
   const [lastPot, setLastPot] = useState<number | 0>(0);
   const [remainingReds, setRemainingReds] = useState<number>(15);
   const [remainingPoints, setRemainingPoints] = useState<number>(147);
+  const [finalSequence, setFinalSequence] = useState<boolean>(false);
+  const [lastColorRespot, setLastColorRespot] = useState<boolean>(false);
 
   const handleButtonClick = (points: number): void => {
     if (!gameStarted) return;
@@ -27,6 +29,13 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
     } else {
       setLastPot(points);
       setPlayerScore(points);
+      if (remainingReds === 0 && lastColorRespot === false) {
+        setLastColorRespot(true);
+      }    
+      if (lastColorRespot === true) {
+        setFinalSequence(true);
+      }
+        
     }
   };
 
@@ -47,32 +56,20 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
     setActivePlayer(activePlayer === 1 ? 2 : 1);
   };
 
-  const isButtonDisabled = (points: number): boolean => {
-    if (!gameStarted) return true;
-    
-    if (points === 1) {
-      return false
-    }
-    if (lastPot === 0 && points === 1) {
-      return false
-    }
-    if (lastPot === 0 && points > 1) {
-      return true
-    }
-    return lastPot > 1
-  };
-
   return (
     <div className="App tw-bg-green-800 tw-h-dvh">
       <div className="row">
-        <div className="col-12 tw-flex tw-justify-center tw-mb-6">
-          <a href={window.location.href} className="tw-font-semibold tw-mt-2 tw-text-white tw-underline">Aristides Hall Snooker Club</a>
-        </div>
         {(
           <>
+            <div className="row">
+              <div className="col-12 tw-flex tw-justify-center tw-mb-6">
+                <a href={window.location.href} className="tw-font-semibold tw-mt-2 tw-text-white tw-underline">Aristides Hall Snooker Club</a>
+              </div>
+            </div>
             <div className="row players tw-mt-2">
               <div className="col-5 tw-flex tw-justify-center">
                 <PlayerDisplay
+                  key={player1Name}
                   isActive={activePlayer === 1}
                   playerName={player1Name}
                   playerScore={player1Score}
@@ -92,7 +89,7 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
                         <button
                           onClick={changeActivePlayer}
                           type="button"
-                          className="tw-w-full tw-rounded-full tw-bg-green-600 tw-px-4 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm hover:tw-bg-indigo-500 "
+                          className="tw-w-full tw-rounded-full tw-bg-green-600 tw-px-4 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm "
                         >
                           End Break
                         </button>
@@ -118,6 +115,7 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
               </div>
               <div className="col-5 tw-flex tw-justify-center">
                 <PlayerDisplay
+                  key={player2Name}
                   isActive={activePlayer === 2}
                   playerName={player2Name}
                   playerScore={player2Score}
@@ -127,14 +125,15 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
             </div>
             <div className="buttons tw-mt-6">
               <div className="row tw-flex tw-justify-center tw-items-middle">
-                {[1, 2, 3, 4, 5, 6, 7].map((points) => (
-                  <div className="col-1">
+                {[1, 2, 3, 4, 5, 6, 7].map((points, index) => (
+                  <div className="col-1" key={points+index}>
                     <Ball
-                      key={points}
                       points={points}
                       onClick={() => handleButtonClick(points)}
-                      disabled={isButtonDisabled(points)}
+                      finalSequence={finalSequence}
                       remainingBalls={points === 1 ? remainingReds : 1}
+                      remainingReds={remainingReds}
+                      lastPot={lastPot}
                     />
                   </div>
                 ))}

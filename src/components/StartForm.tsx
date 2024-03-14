@@ -27,25 +27,31 @@ const StartForm: React.FC<StartFormProps> = ({ player1Name, player2Name, handleP
           <div className="tw-space-y-6">
             <div>
               <div className="tw-mt-2">
-                <input
-                  type="text"
-                  placeholder="Jogador 1 "
+                <select
                   value={player1Name}
-                  className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-indigo-600 sm:tw-text-sm sm:tw-leading-6"
                   onChange={(e) => handlePlayerNameChange(1, e.target.value)}
-                />
+                  className="tw-mt-2 tw-w-full tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-pl-3 tw-text-gray-900 tw-shadow-sm tw-ring-1  placeholder:tw-text-gray-400">
+                  <option value="Player 1">Player 1</option>
+                  <option value="Aris">Aris</option>
+                  <option value="Aristides">Aristides</option>
+                  <option value="Filipe">Filipe</option>
+                  <option value="Quim">Quim</option>
+                </select>
               </div>
             </div>
 
             <div>
               <div className="mt-2">
-                <input
-                  type="text"
-                  placeholder="Jogador 2"
+                <select
                   value={player2Name}
-                  className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-indigo-600 sm:tw-text-sm sm:tw-leading-6"
                   onChange={(e) => handlePlayerNameChange(2, e.target.value)}
-                />
+                  className="tw-mt-2 tw-w-full tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-pl-3 tw-text-gray-900 tw-shadow-sm tw-ring-1  placeholder:tw-text-gray-400">
+                  <option value="Player 1">Player 2</option>
+                  <option value="Aris">Aris</option>
+                  <option value="Aristides">Aristides</option>
+                  <option value="Filipe">Filipe</option>
+                  <option value="Quim">Quim</option>
+                </select>
               </div>
             </div>
 
