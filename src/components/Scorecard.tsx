@@ -125,7 +125,7 @@ const Scorecard: React.FC<ScorecardProps> = ({ player1Name, player2Name, gameSta
                 />
               </div>
             </div>
-            <div className="buttons">
+            <div className="buttons tw-mt-6">
               <div className="row tw-flex tw-justify-center tw-items-middle">
                 {[1, 2, 3, 4, 5, 6, 7].map((points) => (
                   <div className="col-1">
